@@ -10,7 +10,7 @@
 (define gl-link-options
   (cond-expand
     (macosx "-framework OpenGL")
-    (windows "-lopengl32")
+    (windows "-lglew32 -lopengl32")
     (else "-lGL")))
 
 (define compile-options "-O3 -d2") ;todo lower debug 
@@ -23,7 +23,7 @@
         (compile -s ,compile-options gl-utils.import.scm))
        ("gl-utils-core.so" ("gl-utils-core.scm")
         (compile -s ,compile-options gl-utils-core.scm
-                 ,gl-compile-options ,gl-link-options -lGL -J))
+                 ,gl-compile-options ,gl-link-options -J))
        ("gl-utils-core.import.so" ("gl-utils-core.so")
         (compile -s ,compile-options gl-utils-core.import.scm))
        ("gl-utils-srfi-4.so" ("gl-utils-srfi-4.scm")

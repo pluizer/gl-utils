@@ -34,8 +34,12 @@
 #>
 #include <stdlib.h>
 #include <stdio.h>
-#ifdef __APPLE__
+#if defined(__APPLE__)
 #include <OpenGL/gl.h>
+#elif defined(__MINGW32__) || defined (__MINGW64__)
+#include <GL/glew.h>
+#include <GL/glext.h>
+#include <GL/gl.h>
 #else
 #include <GL/gl.h>
 #endif
